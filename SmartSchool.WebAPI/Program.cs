@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Data.Context;
 
@@ -13,6 +14,10 @@ builder.Services.AddDbContext<SmartContext>(
 
 //builder.Services.AddSingleton<IRepository, Repository>();
 //builder.Services.AddTransient<IRepository, Repository>();
+
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddScoped<IRepository, Repository>();
 
 
