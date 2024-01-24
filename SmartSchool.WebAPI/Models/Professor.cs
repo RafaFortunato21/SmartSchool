@@ -11,13 +11,13 @@ namespace SmartSchool.WebAPI.Models
             this.Id = id;
             this.Registro = registro;
             this.Nome = nome;
-            this.SobreNome = sobreNome;
+            this.Sobrenome = sobreNome;
             
         }
         public int Id { get; set; }
         public int Registro { get; set; }
         public string Nome { get; set; }
-        public string SobreNome { get; set; }
+        public string Sobrenome { get; set; }
         public string Telefone { get; set; }
         public DateTime DataInicio { get; set; } = DateTime.Now;
         public DateTime? DataEncerramento { get; set; } = null;

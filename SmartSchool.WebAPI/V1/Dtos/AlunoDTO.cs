@@ -4,6 +4,7 @@ namespace SmartSchool.WebAPI.V1.Dtos
 {
     public record AlunoDTO
     {
+        ///
         public int Id { get; set; }
         public int Matricula { get; set; }
         public string Nome { get; set; }

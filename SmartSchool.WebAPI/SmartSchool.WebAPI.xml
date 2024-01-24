@@ -4,6 +4,12 @@
         <name>SmartSchool.WebAPI</name>
     </assembly>
     <members>
+        <member name="M:SmartSchool.WebAPI.Helpers.DateTimeExtensions.GetTimeOfService(System.DateTime)">
+            <summary>
+            Retorna em anos o tempo de serviço.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SmartSchool.WebAPI.Migrations.Initial">
             <inheritdoc />
         </member>
@@ -40,6 +46,9 @@
             </summary>
             <param name="alunoId"></param>
             <returns></returns>
+        </member>
+        <member name="P:SmartSchool.WebAPI.V1.Dtos.AlunoDTO.Id">
+            
         </member>
         <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get">
             <summary>
