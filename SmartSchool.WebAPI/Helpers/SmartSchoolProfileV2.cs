@@ -1,12 +1,12 @@
 using AutoMapper;
-using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.V2.Dtos;
 
 namespace SmartSchool.WebAPI.Helpers
 {
-    public class SmarSchoolProfile : Profile
+    public class SmartSchoolProfile2 : Profile
     {
-        public SmarSchoolProfile()
+        public SmartSchoolProfile2()
         {
             CreateMap<Aluno, AlunoDTO>()
                 .ForMember(

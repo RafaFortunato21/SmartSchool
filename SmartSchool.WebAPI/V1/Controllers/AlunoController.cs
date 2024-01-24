@@ -1,15 +1,17 @@
+using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Data.Context;
-using SmartSchool.WebAPI.Dtos;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.V1.Dtos;
 
-namespace SmartSchool.WebAPI.Controllers
+namespace SmartSchool.WebAPI.V1.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
         private readonly IRepository _repository;
@@ -21,6 +23,13 @@ namespace SmartSchool.WebAPI.Controllers
             _repository = repository;
         }
 
+        /// <summary>
+        /// Método responsável para retornar todos os meus alunos
+        /// </summary>
+        /// <returns></returns> <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,16 +40,29 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(alunosResult);
         }
 
+        /// <summary>
+        /// Método responsável por retornar apenas um único AlunoDTO
+        /// </summary>
+        /// <returns></returns> <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getRegister")]
         public IActionResult GetRegister()
         {
             return Ok(new AlunoRegistrarDTO());
         }
 
+
+        /// <summary>
+        /// Método responsável por retornar apenas um Aluno atráves do ID.
+        /// </summary>
+        /// <param name="alunoId"></param>
+        /// <returns></returns>
         [HttpGet("{alunoId}")]
         public IActionResult Get(int alunoId)
         {
-            var aluno = _repository.GetAlunoById(alunoId,true);
+            var aluno = _repository.GetAlunoById(alunoId, true);
 
             if (aluno == null) return NotFound();
 
@@ -54,7 +76,7 @@ namespace SmartSchool.WebAPI.Controllers
 
             _repository.Add(alunoEntity);
 
-            return _repository.SaveChanges() 
+            return _repository.SaveChanges()
                     ? Created($"/api/aluno/{aluno.Id}", _mapper.Map<AlunoRegistrarDTO>(alunoEntity))
                     : BadRequest("Aluno não cadastrado.");
         }
@@ -62,7 +84,7 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPut("{alunoId}")]
         public IActionResult Put(int alunoId, AlunoRegistrarDTO model)
         {
-            
+
             var aluno = _repository.GetAlunoById(alunoId);
             if (aluno == null) return BadRequest("Aluno não encontrado");
 
@@ -70,7 +92,7 @@ namespace SmartSchool.WebAPI.Controllers
 
             _repository.Update(aluno);
 
-            return _repository.SaveChanges() 
+            return _repository.SaveChanges()
                     ? Created($"/api/aluno/{aluno.Id}", _mapper.Map<AlunoDTO>(aluno))
                     : BadRequest("Aluno não atualizado.");
         }
@@ -78,14 +100,14 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPatch("{alunoId}")]
         public IActionResult Patch(int alunoId, AlunoRegistrarDTO model)
         {
-             var aluno = _repository.GetAlunoById(alunoId);
+            var aluno = _repository.GetAlunoById(alunoId);
             if (aluno == null) return BadRequest("Aluno não encontrado");
 
             _mapper.Map(model, aluno);
 
             _repository.Update(aluno);
 
-            return _repository.SaveChanges() 
+            return _repository.SaveChanges()
                     ? Created($"/api/aluno/{aluno.Id}", _mapper.Map<AlunoRegistrarDTO>(aluno))
                     : BadRequest("Aluno não atualizado.");
         }
@@ -95,11 +117,11 @@ namespace SmartSchool.WebAPI.Controllers
         {
             var aluno = _repository.GetAlunoById(alunoId);
             if (aluno == null) return BadRequest();
-            
-             _repository.Delete (aluno);
 
-            return _repository.SaveChanges() 
-                    ? Ok("Aluno Deletado") 
+            _repository.Delete(aluno);
+
+            return _repository.SaveChanges()
+                    ? Ok("Aluno Deletado")
                     : BadRequest("Aluno não Atualizado.");
         }
     }

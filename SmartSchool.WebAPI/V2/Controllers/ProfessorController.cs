@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
@@ -7,7 +8,8 @@ using SmartSchool.WebAPI.Models;
 namespace SmartSchool.WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
 

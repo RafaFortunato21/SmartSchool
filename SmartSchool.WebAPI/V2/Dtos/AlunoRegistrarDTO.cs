@@ -1,4 +1,4 @@
-namespace SmartSchool.WebAPI.Dtos
+namespace SmartSchool.WebAPI.V2.Dtos
 {
     public class AlunoRegistrarDTO
     {
@@ -11,6 +11,6 @@ namespace SmartSchool.WebAPI.Dtos
         public DateTime DataInicio { get; set; } = DateTime.Now;
         public DateTime? DataEncerramento { get; set; } = null;
         public bool Ativo { get; set; } = true;
-        
+
     }
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartSchool.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:SmartSchool.WebAPI.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.AlunoController.Get">
+            <summary>
+            Método responsável para retornar todos os meus alunos
+            </summary>
+            <returns></returns> <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.AlunoController.GetRegister">
+            <summary>
+            Método responsável por retornar apenas um único AlunoDTO
+            </summary>
+            <returns></returns> <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.AlunoController.Get(System.Int32)">
+            <summary>
+            Método responsável por retornar apenas um Aluno atráves do ID.
+            </summary>
+            <param name="alunoId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get">
+            <summary>
+            Método responsável para retornar todos os meus alunos
+            </summary>
+            <returns></returns> <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SmartSchool.WebAPI.Controllers.AlunoController.Get(System.Int32)">
+            <summary>
+            Método responsável por retornar apenas um Aluno atráves do ID.
+            </summary>
+            <param name="alunoId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
