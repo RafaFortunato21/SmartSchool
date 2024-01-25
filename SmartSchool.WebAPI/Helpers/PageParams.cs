@@ -10,5 +10,9 @@
             get { return pageSize;  }
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value; }
         }
+
+        public int? Matricula { get; set; } = null;
+        public string Nome { get; set; } = String.Empty;
+        public bool Ativo { get; set; }
     }
 }

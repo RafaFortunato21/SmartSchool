@@ -63,7 +63,17 @@ namespace SmartSchool.WebAPI.Data
             query = query.AsNoTracking()
                          .OrderBy(aluno => aluno.Id);
 
-            //return await query.ToListAsync();
+            if (!string.IsNullOrEmpty(pageParams.Nome))
+                query = query.Where(a => a.Nome
+                             .ToUpper()
+                             .Contains(pageParams.Nome.ToUpper()) ||
+                             a.Sobrenome.ToUpper()
+                             .Contains(pageParams.Nome.ToUpper()));
+            if (pageParams.Matricula > 0)
+                query = query.Where(a => a.Matricula == pageParams.Matricula);
+
+            if (pageParams.Ativo)
+                query = query.Where(a => a.Ativo == pageParams.Ativo);
 
             return await PageList<Aluno>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
@@ -161,6 +171,6 @@ namespace SmartSchool.WebAPI.Data
             return query.FirstOrDefault();
         }
 
-      
+
     }
 }
