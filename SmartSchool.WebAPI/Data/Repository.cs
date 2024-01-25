@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data.Context;
+using SmartSchool.WebAPI.Helpers;
 using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Data
@@ -31,11 +32,11 @@ namespace SmartSchool.WebAPI.Data
             return _context.SaveChanges() > 0;
         }
 
-        public Aluno[] GetAllAlunos(bool includeDisciplina = false)
+        public Aluno[] GetAllAlunos(bool includeProfessor = false)
         {
             IQueryable<Aluno> query = _context.Alunos;
 
-            if (includeDisciplina)
+            if (includeProfessor)
             {
                 query = query.Include(a => a.AlunosDisciplinas)
                              .ThenInclude(d => d.Disciplina)
@@ -46,6 +47,25 @@ namespace SmartSchool.WebAPI.Data
                          .OrderBy(aluno => aluno.Id);
 
             return query.ToArray();
+        }
+
+        public async Task<PageList<Aluno>> GetAllAlunosAsync(PageParams pageParams, bool includeProfessor = false)
+        {
+            IQueryable<Aluno> query = _context.Alunos;
+
+            if (includeProfessor)
+            {
+                query = query.Include(a => a.AlunosDisciplinas)
+                             .ThenInclude(d => d.Disciplina)
+                             .ThenInclude(p => p.Professor);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(aluno => aluno.Id);
+
+            //return await query.ToListAsync();
+
+            return await PageList<Aluno>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public Aluno[] GetAlunosByDisciplinaId(int disciplinaId, bool includeDisciplina = false)
@@ -141,5 +161,6 @@ namespace SmartSchool.WebAPI.Data
             return query.FirstOrDefault();
         }
 
+      
     }
 }

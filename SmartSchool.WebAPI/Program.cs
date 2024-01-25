@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 
 builder.Services.AddDbContext<SmartContext>(
@@ -61,7 +62,7 @@ builder.Services.AddSwaggerGen(options =>
                     Title = "SmartSchool API",
                     Version = description.ApiVersion.ToString(),
                     TermsOfService = new Uri("https://TermoDeUsoSmartSchool.com"),
-                    Description = "A descrição da WebAPI do SmartSchool",
+                    Description = "A descriÃ§Ã£o da WebAPI do SmartSchool",
                     License = new Microsoft.OpenApi.Models.OpenApiLicense
                     {
                         Name = "SmartSchool License",
@@ -89,8 +90,8 @@ var app = builder.Build();
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger()
         .UseSwaggerUI(options =>
         {
@@ -104,11 +105,12 @@ if (app.Environment.IsDevelopment())
             options.RoutePrefix = "";
         });
     app.UseSwaggerUI();
-}
+// }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
+ //Add this line
 
 app.MapControllers();
 
