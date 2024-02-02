@@ -3,7 +3,7 @@
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
-EXPOSE 5000
+#EXPOSE 5000
 ENV ASPNETCORE_URLS=http://*:5000
 
 #Copy csproj and restorre as distinct layers

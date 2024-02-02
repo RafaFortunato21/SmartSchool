@@ -13,9 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<SmartContext>(
-    context => context.UseSqlite(builder.Configuration.GetConnectionString("Default"))
-);
+// builder.Services.AddDbContext<SmartContext>(
+//     context => context.UseMySql(builder.Configuration.GetConnectionString("Default"))
+// );
+
+// builder.Services.AddDbContext<SmartContext>(options =>
+//     options.UseMySql(ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MySqlConnection"))));
+
+builder.Services.AddDbContext<SmartContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"),ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MySqlConnection"))));
 
 //builder.Services.AddSingleton<IRepository, Repository>();
 //builder.Services.AddTransient<IApiVersionDescriptionProvider>();
